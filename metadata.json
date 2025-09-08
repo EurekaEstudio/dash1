@@ -1,0 +1,6 @@
+{
+  "name": "Chat History Dashboard",
+  "description": "A dashboard to view, filter, and analyze chat history from a Supabase database. It provides metrics, a searchable history, and visual analytics.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
