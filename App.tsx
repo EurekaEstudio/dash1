@@ -7,6 +7,28 @@ import HistoryPage from './pages/HistoryPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import { TableProvider } from './contexts/TableContext';
 
+const DebugInfo: React.FC = () => {
+  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+  const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+  return (
+    <div style={{
+      position: 'fixed', 
+      top: '10px', 
+      left: '10px', 
+      zIndex: 9999, 
+      backgroundColor: 'white', 
+      padding: '10px', 
+      border: '2px solid red',
+      color: 'black'
+    }}>
+      <h3 style={{ fontWeight: 'bold', margin: 0 }}>Debug Info:</h3>
+      <p>VITE_SUPABASE_URL: <strong>{supabaseUrl || 'NOT SET'}</strong></p>
+      <p>VITE_SUPABASE_ANON_KEY: <strong>{supabaseKey ? 'SET' : 'NOT SET'}</strong></p>
+    </div>
+  );
+};
+
 const App: React.FC = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   
@@ -27,6 +49,7 @@ const App: React.FC = () => {
     <TableProvider>
         <HashRouter>
           <div className="flex h-screen bg-gray-900 font-sans text-gray-100">
+            <DebugInfo />
             {/* Backdrop for mobile */}
             {isSidebarOpen && (
                 <div
