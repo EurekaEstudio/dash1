@@ -1,15 +1,17 @@
-# Dependencias
+# Dependencias y logs
 node_modules
-
-# Archivos de build local
-dist
 npm-debug.log
+yarn-error.log
 
-# Variables de entorno
+# Directorio de build local (se genera dentro del contenedor)
+dist
+dist-ssr
+
+# Archivos de entorno local (los secretos se deben pasar en el build)
+.env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
 
-# Otros
+# Archivos del sistema operativo y editores
 .DS_Store
+.vscode/

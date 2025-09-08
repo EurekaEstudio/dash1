@@ -1,0 +1,27 @@
+{
+  # Activa la compresión para un mejor rendimiento
+  order gzip before respond
+}
+
+# Configuración del sitio. 
+# Reemplaza ":80" con tu nombre de dominio (ej. midominio.com) 
+# para obtener HTTPS automático y gratuito de Caddy.
+:80 {
+  # Establece la raíz del sitio web al directorio donde copiamos los archivos
+  root * /srv
+
+  # Activa la compresión gzip y zstd
+  encode gzip zstd
+
+  # Redirige todas las solicitudes que no son a archivos estáticos a index.html
+  # Esto es CLAVE para que React Router funcione correctamente.
+  @not_a_file `!{
+    file {
+      try_files {path} {path}/index.html
+    }
+  }`
+  rewrite @not_a_file /index.html
+
+  # Sirve los archivos estáticos
+  file_server
+}
