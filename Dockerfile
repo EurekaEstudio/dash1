@@ -9,7 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instala las dependencias del proyecto, incluidas las de desarrollo para el build
-RUN npm install
+RUN npm ci
 
 # Copia el resto del código fuente de la aplicación
 COPY . .
