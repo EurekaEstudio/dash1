@@ -8,7 +8,12 @@ WORKDIR /app
 # Copia package.json y el lockfile para instalar dependencias
 COPY package*.json ./
 
-# Instala las dependencias del proyecto, incluidas las de desarrollo para el build
+# --- Cache Buster ---
+# Esta línea fuerza la invalidación de la caché de Docker para asegurar
+# que las dependencias siempre se instalen de nuevo.
+ARG CACHE_BUSTER
+RUN echo "Busting cache with value: $CACHE_BUSTER"
+
 RUN npm ci
 
 # Copia el resto del código fuente de la aplicación
